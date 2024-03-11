@@ -1,0 +1,20 @@
+{
+    "nome": "Marcos Henrique",
+    "idade": 21,
+    "profissao": "Monitor Estudantil",
+    "parentesco":
+    [
+        {
+            "tipo": "pai",
+            "nome": "Manoel"
+        },
+        {
+            "tipo": "mae",
+            "nome": "Vanilda"
+        },
+        {
+            "tipo": "irmaos",
+            "nome": ["Maria Cecíla, Luís Antônio"]
+        }
+    ] 
+}
