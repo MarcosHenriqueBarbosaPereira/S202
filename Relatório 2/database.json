@@ -1,0 +1,28 @@
+{
+    "aulas":{
+        "S202": {
+            "id": 1,
+            "aula": {
+                "assunto": "Banco de Dados II",
+                "professor": "Jonas",
+                "alunos": ["Sabrina", "Nathália", "Pedro A.", "Marcos"]
+            }
+        },
+        "C111":{
+            "id": 2,
+            "aula": {
+                "assunto": "Análise de Dados",
+                "professor": "Renzo",
+                "alunos": ["Felipe", "Gabriel", "Vitor", "Lucas"]
+            }
+        },
+        "C210":{
+            "id": 3,
+            "aula": {
+                "assunto": "Inteligência Computacional",
+                "professor": "Victória",
+                "alunos": ["Arthur", "Álvaro", "Pedro L.", "Jéssica"]
+            }
+        }
+    }
+}
