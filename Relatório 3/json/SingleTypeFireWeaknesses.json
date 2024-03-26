@@ -1,0 +1,199 @@
+[
+    {
+        "_id": {
+            "$oid": "6601ef8bfd21abbb8baf6aed"
+        },
+        "id": 10,
+        "num": "010",
+        "name": "Caterpie",
+        "img": "http://www.serebii.net/pokemongo/pokemon/010.png",
+        "type": [
+            "Bug"
+        ],
+        "height": "0.30 m",
+        "weight": "2.9 kg",
+        "candy": "Caterpie Candy",
+        "candy_count": 12,
+        "egg": "2 km",
+        "spawn_chance": 3.032,
+        "avg_spawns": 303.2,
+        "spawn_time": "16:35",
+        "multipliers": [
+            1.05
+        ],
+        "weaknesses": [
+            "Fire",
+            "Flying",
+            "Rock"
+        ],
+        "next_evolution": [
+            {
+                "num": "011",
+                "name": "Metapod"
+            },
+            {
+                "num": "012",
+                "name": "Butterfree"
+            }
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "6601ef8bfd21abbb8baf6aee"
+        },
+        "id": 11,
+        "num": "011",
+        "name": "Metapod",
+        "img": "http://www.serebii.net/pokemongo/pokemon/011.png",
+        "type": [
+            "Bug"
+        ],
+        "height": "0.71 m",
+        "weight": "9.9 kg",
+        "candy": "Caterpie Candy",
+        "candy_count": 50,
+        "egg": "Not in Eggs",
+        "spawn_chance": 0.187,
+        "avg_spawns": 18.7,
+        "spawn_time": "02:11",
+        "multipliers": [
+            3.55,
+            3.79
+        ],
+        "weaknesses": [
+            "Fire",
+            "Flying",
+            "Rock"
+        ],
+        "prev_evolution": [
+            {
+                "num": "010",
+                "name": "Caterpie"
+            }
+        ],
+        "next_evolution": [
+            {
+                "num": "012",
+                "name": "Butterfree"
+            }
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "6601ef8bfd21abbb8baf6b34"
+        },
+        "id": 81,
+        "num": "081",
+        "name": "Magnemite",
+        "img": "http://www.serebii.net/pokemongo/pokemon/081.png",
+        "type": [
+            "Electric"
+        ],
+        "height": "0.30 m",
+        "weight": "6.0 kg",
+        "candy": "Magnemite Candy",
+        "candy_count": 50,
+        "egg": "5 km",
+        "spawn_chance": 0.71,
+        "avg_spawns": 71,
+        "spawn_time": "04:04",
+        "multipliers": [
+            2.16,
+            2.17
+        ],
+        "weaknesses": [
+            "Fire",
+            "Water",
+            "Ground"
+        ],
+        "next_evolution": [
+            {
+                "num": "082",
+                "name": "Magneton"
+            }
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "6601ef8bfd21abbb8baf6b35"
+        },
+        "id": 82,
+        "num": "082",
+        "name": "Magneton",
+        "img": "http://www.serebii.net/pokemongo/pokemon/082.png",
+        "type": [
+            "Electric"
+        ],
+        "height": "0.99 m",
+        "weight": "60.0 kg",
+        "candy": "Magnemite Candy",
+        "egg": "Not in Eggs",
+        "spawn_chance": 0.023,
+        "avg_spawns": 2.3,
+        "spawn_time": "15:25",
+        "multipliers": null,
+        "weaknesses": [
+            "Fire",
+            "Water",
+            "Ground"
+        ],
+        "prev_evolution": [
+            {
+                "num": "081",
+                "name": "Magnemite"
+            }
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "6601ef8bfd21abbb8baf6b55"
+        },
+        "id": 114,
+        "num": "114",
+        "name": "Tangela",
+        "img": "http://www.serebii.net/pokemongo/pokemon/114.png",
+        "type": [
+            "Grass"
+        ],
+        "height": "0.99 m",
+        "weight": "35.0 kg",
+        "candy": "None",
+        "egg": "5 km",
+        "spawn_chance": 0.228,
+        "avg_spawns": 22.8,
+        "spawn_time": "23:13",
+        "multipliers": null,
+        "weaknesses": [
+            "Fire",
+            "Ice",
+            "Poison",
+            "Flying",
+            "Bug"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "6601ef8bfd21abbb8baf6b62"
+        },
+        "id": 127,
+        "num": "127",
+        "name": "Pinsir",
+        "img": "http://www.serebii.net/pokemongo/pokemon/127.png",
+        "type": [
+            "Bug"
+        ],
+        "height": "1.50 m",
+        "weight": "55.0 kg",
+        "candy": "None",
+        "egg": "10 km",
+        "spawn_chance": 0.99,
+        "avg_spawns": 99,
+        "spawn_time": "03:25",
+        "multipliers": null,
+        "weaknesses": [
+            "Fire",
+            "Flying",
+            "Rock"
+        ]
+    }
+]
