@@ -1,0 +1,53 @@
+//Questão 1 -----------------------------------------------------------------------------------------------------------
+
+// 1 ----------
+MATCH (n)
+RETURN n
+
+// 2 ----------
+MATCH (g:Game)
+WHERE g.ano > 2012
+RETURN g.titulo
+
+// 3 ----------
+MATCH (g:Game)
+WHERE g.genero = 'Terror'
+RETURN g.titulo
+
+// 4 ----------
+MATCH (j:Jurado)-[r:JOGOU]->(g:Game)
+WHERE r.nota >= 7
+RETURN g.titulo
+
+
+//Questão 2 -----------------------------------------------------------------------------------------------------------
+
+// 1 ----------
+CREATE (g:Game {titulo: 'Elden Ring', genero: 'RPG', ano: 2022});
+CREATE (g:Game {titulo: 'Animal Crossing: New Horizons', genero: 'Simulação', ano: 2020});
+CREATE (g:Game {titulo: 'The Witcher 3: Wild Hunt', genero: 'RPG', ano: 2015});
+CREATE (g:Game {titulo: 'Metroid Dread', genero: 'Metroidvania', ano: 2021});
+
+// 2 ----------
+CREATE (j:Jurado {nome: 'Carla'});
+CREATE (j:Jurado {nome: 'Rafael'});
+CREATE (j:Jurado {nome: 'Sofia'});
+
+// 3 ----------
+MATCH (j:Jurado {nome: 'Carla'}),(g:Game {titulo: 'Elden Ring'})
+CREATE (j)-[:JOGOU {nota: 10, horas: 200}]->(g);
+
+MATCH (j:Jurado {nome: 'Carla'}),(g:Game {titulo: 'Metroid Dread'})
+CREATE (j)-[:JOGOU {nota: 9, horas: 15}]->(g);
+
+MATCH (j:Jurado {nome: 'Rafael'}),(g:Game {titulo: 'Animal Crossing: New Horizons'})
+CREATE (j)-[:JOGOU {nota: 6, horas: 25}]->(g);
+
+MATCH (j:Jurado {nome: 'Rafael'}),(g:Game {titulo: 'The Witcher 3: Wild Hunt'})
+CREATE (j)-[:JOGOU {nota: 10, horas: 150}]->(g);
+
+MATCH (j:Jurado {nome: 'Sofia'}), (g:Game {titulo: 'Metroid Dread'})
+CREATE (j)-[:JOGOU {nota: 7, horas: 10}]->(g);
+
+MATCH (j:Jurado {nome: 'Sofia'}), (g:Game {titulo: 'Animal Crossing: New Horizons'})
+CREATE (j)-[:JOGOU {nota: 8, horas: 12}]->(g);
