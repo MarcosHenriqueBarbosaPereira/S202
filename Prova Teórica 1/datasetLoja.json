@@ -1,0 +1,72 @@
+{
+    "loja":[
+        {
+            "nome": "Scroll: Cura Sagrada",
+            "preco": 750,
+            "peso": 0.1,
+            "volume": 0.2,
+            "tipo": "Mágico",
+            "efeito": "Cura 1d8+1 pontos de vida."
+        },
+        {
+            "nome": "Scroll: Bola de Fogo",
+            "preco": 750,
+            "peso": 0.1,
+            "volume": 0.2,
+            "tipo": "Mágico",
+            "efeito": "Causa 1d6 de dano de fogo em um alvo a até 10m de distância."
+        },
+        {
+            "nome": "Scroll: Mísseis Mágicos",
+            "preco": 1250,
+            "peso": 0.1,
+            "volume": 0.2,
+            "tipo": "Mágico",
+            "efeito": "Causa 1d4+1 de dano mágico em um alvo a até 10m de distância."
+        },
+        {
+            "nome": "Scroll: Proteção contra a Escuridão",
+            "preco": 800,
+            "peso": 0.1,
+            "volume": 0.2,
+            "tipo": "Mágico",
+            "efeito": "Concede +2 de bônus de deflexão à CA e +2 de resistência a testes de resistência contra ataques de criaturas do tipo escuridão."
+        },
+        {
+            "nome": "Bolsa de Remédios",
+            "preco": 500,
+            "peso": 1.0,
+            "volume": 600,
+            "tipo": "Inventário",
+            "capacidade de peso": 10,
+            "capacidade de volume": 550
+        },
+        {
+            "nome": "Bolsa de Armas",
+            "preco": 2000,
+            "peso": 3.0,
+            "volume": 2000,
+            "tipo": "Inventário",
+            "capacidade de peso": 20,
+            "capacidade de volume": 1800
+        },
+        {
+            "nome": "Adaga",
+            "preco": 200,
+            "peso": 1.0,
+            "volume": 150,
+            "tipo": "Arma",
+            "dano": "1d4"
+        },
+        {
+            "nome": "Mangual",
+            "preco": 1800,
+            "peso": 15.0,
+            "volume": 750,
+            "tipo": "Arma",
+            "dano": "1d8"
+        }
+
+    ]
+
+}
