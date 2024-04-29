@@ -6,7 +6,7 @@ MATCH (n:Airport) RETURN AVG(n.altitude)
 MATCH (n:Airport) RETURN COLLECT(n.altitude)
 MATCH (n:Airport) RETURN MAX(n.runways)
 
-//Funções Matemáticas
+//Funções Matemáticas ----------------------------------------------------------------------
 
 MATCH (n:Airport) RETURN CEIL(AVG(n.altitude))
 MATCH (n:Airport) RETURN ROUND(n.pagerank,2,'HALF_UP')
@@ -14,7 +14,7 @@ MATCH (n:Airport) RETURN SIGN(n.altitude)
 MATCH (n:Airport) RETURN FLOOR(AVG(n.longest))
 MATCH (n:Airport) RETURN ABS(MIN(n.altitude)-MAX(n.altitude))
 
-//Funções de String
+//Funções de String ------------------------------------------------------------------------
 
 MATCH (n:Airport) RETURN (REPLACE(toString(n.location), "point", ""))
 MATCH (n:City) RETURN (TOUPPER(n.name))
