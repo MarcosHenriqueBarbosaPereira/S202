@@ -1,0 +1,23 @@
+//Agregações -------------------------------------------------------------------------------
+
+MATCH (n:Airport) RETURN COUNT(n.id)
+MATCH (n:Airport) RETURN MIN(n.altitude)
+MATCH (n:Airport) RETURN AVG(n.altitude)
+MATCH (n:Airport) RETURN COLLECT(n.altitude)
+MATCH (n:Airport) RETURN MAX(n.runways)
+
+//Funções Matemáticas
+
+MATCH (n:Airport) RETURN CEIL(AVG(n.altitude))
+MATCH (n:Airport) RETURN ROUND(n.pagerank,2,'HALF_UP')
+MATCH (n:Airport) RETURN SIGN(n.altitude)
+MATCH (n:Airport) RETURN FLOOR(AVG(n.longest))
+MATCH (n:Airport) RETURN ABS(MIN(n.altitude)-MAX(n.altitude))
+
+//Funções de String
+
+MATCH (n:Airport) RETURN (REPLACE(toString(n.location), "point", ""))
+MATCH (n:City) RETURN (TOUPPER(n.name))
+MATCH (n:Region) RETURN (SUBSTRING(n.name,0,2)), (SUBSTRING(n.name,3))
+MATCH (n:Country) RETURN (REVERSE(n.code))
+MATCH (n:Region) RETURN (SPLIT(n.name,'-'))
