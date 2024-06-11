@@ -1,0 +1,32 @@
+CREATE:
+ c_prof: Criar Professor
+ c_aluno: Criar Aluno
+ c_turma: Criar Turma
+ c_disc: Criar Disciplina
+ c_prof_disc: Criar relacionamento entre Professor e Disciplina
+ c_prof_turma: Criar relacionamento entre Professor e Turma
+ c_aluno_turma: Criar relacionamento entre Aluno e Turma
+ c_aluno_disc: Criar relacionamento entre Aluno e Disciplina
+
+READ:
+ g_prof: Buscar Professor
+ g_aluno: Buscar Aluno
+ g_turma: Buscar Turma
+ g_disc: Buscar Disciplina
+ g_prof_disc: Buscar Disciplinas de um Professor
+ g_prof_turma: Buscar Turmas de um Professor
+ g_aluno_turma: Buscar Turmas de um Aluno
+ g_aluno_disc: Buscar Disciplinas de um Aluno
+ g_turma_aluno: Buscar Alunos de uma Turma
+ g_turma_n_aluno: Buscar número de Alunos de uma Turma
+ g_disc_aluno: Buscar Alunos de uma Disciplina
+ g_disc_prof: Buscar Professor de uma Disciplina
+ g_disc_n_aluno: Buscar número de Alunos de uma Disciplina
+
+UPDATE:
+ u_prof: Atualizar Professor
+ u_aluno: Atualizar Aluno
+
+DELETE:
+ d_prof: Deletar Professor
+ d_aluno: Deletar Aluno

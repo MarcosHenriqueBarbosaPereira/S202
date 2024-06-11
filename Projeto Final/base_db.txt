@@ -1,0 +1,49 @@
+CREATE(p: Professor{nome: 'Chris', cpf: '111.222.333-00'});
+CREATE(p: Professor{nome: 'Jonas', cpf: '444.555.666-00'});
+
+CREATE(a: Aluno{nome: 'Sabrina', matricula: '200'});
+CREATE(a: Aluno{nome: 'Marcos', matricula: '300'});
+
+CREATE(d: Disciplina{nome: 'C206'});
+CREATE(d: Disciplina{nome: 'C207'});
+
+CREATE(t: Turma{nome: 'C206-A'});
+CREATE(t: Turma{nome: 'C206-B'});
+CREATE(t: Turma{nome: 'C207-A'});
+CREATE(t: Turma{nome: 'C207-B'});
+
+MATCH(p:Professor{nome:'Chris'}),(d:Disciplina{nome:'C206'})
+CREATE(p)-[:LECIONA]->(d);
+MATCH(p:Professor{nome:'Jonas'}),(d:Disciplina{nome:'C207'})
+CREATE(p)-[:LECIONA]->(d);
+
+MATCH(p:Professor{nome:'Chris'}),(t:Turma{nome:'C206-A'})
+CREATE(p)-[:POSSUI]->(t);
+MATCH(p:Professor{nome:'Chris'}),(t:Turma{nome:'C206-B'})
+CREATE(p)-[:POSSUI]->(t);
+
+MATCH(p:Professor{nome:'Jonas'}),(t:Turma{nome:'C207-A'})
+CREATE(p)-[:POSSUI]->(t);
+MATCH(p:Professor{nome:'Jonas'}),(t:Turma{nome:'C207-B'})
+CREATE(p)-[:POSSUI]->(t);
+
+MATCH(a:Aluno{nome:'Marcos'}),(d:Disciplina{nome:'C207'})
+CREATE(a)-[:MATRICULADO]->(d);
+MATCH(a:Aluno{nome:'Marcos'}),(d:Disciplina{nome:'C206'})
+CREATE(a)-[:MATRICULADO]->(d);
+
+MATCH(a:Aluno{nome:'Sabrina'}),(d:Disciplina{nome:'C207'})
+CREATE(a)-[:MATRICULADO]->(d);
+MATCH(a:Aluno{nome:'Marcos'}),(d:Disciplina{nome:'C206'})
+CREATE(a)-[:MATRICULADO]->(d);
+
+MATCH(a:Aluno{nome:'Marcos'}),(t:Turma{nome:'C207-A'})
+CREATE(a)-[:FREQUENTA]->(t);
+MATCH(a:Aluno{nome:'Sabrina'}),(t:Turma{nome:'C207-B'})
+CREATE(a)-[:FREQUENTA]->(t);
+
+
+MATCH(a:Aluno{nome:'Marcos'}),(t:Turma{nome:'C206-A'})
+CREATE(a)-[:FREQUENTA]->(t);
+MATCH(a:Aluno{nome:'Sabrina'}),(t:Turma{nome:'C206-B'})
+CREATE(a)-[:FREQUENTA]->(t);

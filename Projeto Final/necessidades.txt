@@ -1,0 +1,13 @@
+Banco de dados NEO4J
+
+Tipos:
+-Professor - nome, cpf
+-Aluno - nome, matrícula
+-Disciplina - nome
+-Turma - nome
+
+Relações:
+- Professor <-> Disciplina (Leciona)
+- Professor <-> Turma (Possui)
+- Aluno <-> Disciplina (Matriculado)
+- Aluno <-> Turma (Frequenta)
