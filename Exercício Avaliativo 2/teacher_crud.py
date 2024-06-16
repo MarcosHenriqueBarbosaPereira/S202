@@ -13,7 +13,7 @@ class TeacherCrud:
     def read(self, name):
         query = "MATCH (teacher:Teacher {name: $name}) RETURN teacher"
         parameters = {"name": name}
-        return self.database.execute_query(query, parameters)\
+        return self.database.execute_query(query, parameters)
         
     def delete(self, name):
         query = "MATCH (teacher:Teacher {name: $name}) DETACH DELETE teacher"

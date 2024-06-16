@@ -87,59 +87,83 @@ class SchoolCLI:
 
     def get_teacher(self):
         cpf = input("Digite o CPF do professor: ")
-        print(self.schoolDAO.get_teacher(cpf))
+        result = (self.schoolDAO.get_teacher(cpf))
+        for record in result:
+            print("Nome: " + record["p"]["nome"] + " CPF: " + record["p"]["cpf"])
 
     def get_student(self):
         matricula = input("Digite a Matricula do aluno: ")
-        print(self.schoolDAO.get_student(matricula))
+        result = (self.schoolDAO.get_student(matricula))
+        for record in result:
+            print("Nome: " + record["a"]["nome"] + " Matricula: " + record["a"]["matricula"])
 
     def get_class(self):
         turma = input("Digite o Nome da Turma: ")
-        print(self.schoolDAO.get_class(turma))
+        result = (self.schoolDAO.get_class(turma))
+        for record in result:
+            print("Nome: " + record["t"]["nome"])
 
     def get_subject(self):
         nome = input("Digite o Nome da Disciplina: ")
-        print(self.schoolDAO.get_subject(nome))
+        result = (self.schoolDAO.get_subject(nome))
+        for record in result:
+            print("Nome: " + record["d"]["nome"])
 
     def get_teacher_subjects(self):
         cpf = input("Digite o CPF do professor: ")
-        print(self.schoolDAO.get_teacher_subjects(cpf))
+        result = (self.schoolDAO.get_teacher_subjects(cpf))
+        for record in result:
+            print("Nome: " + record["d"]["nome"])
 
     def get_teacher_classes(self):
         cpf = input("Digite o CPF do professor: ")
-        print(self.schoolDAO.get_teacher_classes(cpf))
+        result = (self.schoolDAO.get_teacher_classes(cpf))
+        for record in result:
+            print("Nome: " + record["t"]["nome"])
 
     def get_student_classes(self):
         matricula = input("Digite a Matricula do aluno: ")
-        print(self.schoolDAO.get_student_classes(matricula))
+        result = (self.schoolDAO.get_student_classes(matricula))
+        for record in result:
+            print("Nome: " + record["t"]["nome"])
 
     def get_student_subjects(self):
         matricula = input("Digite a Matricula do aluno: ")
-        print(self.schoolDAO.get_student_subjects(matricula))
+        result = (self.schoolDAO.get_student_subjects(matricula))
+        for record in result:
+            print("Nome: " + record["d"]["nome"])
 
     def get_class_students(self):
         turma = input("Digite o Nome da Turma: ")
-        print(self.schoolDAO.get_class_students(turma))
+        result = (self.schoolDAO.get_class_students(turma))
+        for record in result:
+            print("Nome: " + record["a"]["nome"] + " Matricula: " + record["a"]["matricula"])
 
     def get_number_of_students_in_class(self):
         turma = input("Digite o Nome da Turma: ")
-        print(self.schoolDAO.get_number_of_students_in_class(turma))
+        result = (self.schoolDAO.get_number_of_students_in_class(turma))
+        print(result[0]["count(a)"])
 
     def get_subject_students(self):
         nome = input("Digite o Nome da Disciplina: ")
-        print(self.schoolDAO.get_subject_students(nome))
+        result = (self.schoolDAO.get_subject_students(nome))
+        for record in result:
+            print("Nome: " + record["a"]["nome"] + " Matricula: " + record["a"]["matricula"])
 
     def get_subject_teacher(self):
         nome = input("Digite o Nome da Disciplina: ")
-        print(self.schoolDAO.get_subject_teacher(nome))
+        result = (self.schoolDAO.get_subject_teacher(nome))
+        for record in result:
+            print("Nome: " + record["p"]["nome"] + " CPF: " + record["p"]["cpf"])
 
     def get_number_of_students_in_subject(self):
         nome = input("Digite o Nome da Disciplina: ")
-        print(self.schoolDAO.get_number_of_students_in_subject(nome))
+        result = (self.schoolDAO.get_number_of_students_in_subject(nome))
+        print(result[0]["count(a)"])
 
     def update_teacher(self):
         cpf = input("Digite o CPF do professor: ")
-        novoNome = input("Digite o novo Nome do professor: ")
+        novoNome = str(input("Digite o novo Nome do professor: "))
         self.schoolDAO.update_teacher(cpf, novoNome)
 
     def update_student(self):

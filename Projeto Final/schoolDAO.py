@@ -129,13 +129,13 @@ class SchoolDAO:
     
     # UPDATE -------------------------------------------------------------------------------------------------------
     def update_teacher(self, cpf:str, nome:str):
-        query = "MATCH (p:Professor {cpf: $cpf}) SET p.nome = {nome: $nome}"
+        query = "MATCH (p:Professor {cpf: $cpf}) SET p.nome = $nome"
         parameters = {"cpf": cpf, "nome": nome}
         self.database.execute_query(query, parameters)
         print("Professor atualizado com sucesso!")
 
     def update_student(self, matricula:str, nome:str):
-        query = "MATCH (a:Aluno {matricula: $matricula}) SET a.nome = {nome: $nome}"
+        query = "MATCH (a:Aluno {matricula: $matricula}) SET a.nome = $nome"
         parameters = {"matricula": matricula, "nome": nome}
         self.database.execute_query(query, parameters)
         print("Aluno atualizado com sucesso!")

@@ -34,7 +34,7 @@ CREATE(a)-[:MATRICULADO]->(d);
 
 MATCH(a:Aluno{nome:'Sabrina'}),(d:Disciplina{nome:'C207'})
 CREATE(a)-[:MATRICULADO]->(d);
-MATCH(a:Aluno{nome:'Marcos'}),(d:Disciplina{nome:'C206'})
+MATCH(a:Aluno{nome:'Sabrina'}),(d:Disciplina{nome:'C206'})
 CREATE(a)-[:MATRICULADO]->(d);
 
 MATCH(a:Aluno{nome:'Marcos'}),(t:Turma{nome:'C207-A'})
