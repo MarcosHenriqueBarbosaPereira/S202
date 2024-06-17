@@ -42,21 +42,38 @@ interests = [
         {"usuario":3, "interesses": [{"tecnologia":0.999}, {"hardware":0.865}, {"games":0.745}, {"culinária":0.658}, {"servers":0.54}]},
         {"usuario":4, "interesses": [{"neurociências":0.865}, {"comportamento":0.844}, {"skinner":0.854}, {"laboratório":0.354}, {"pesquisa":0.428}]}
     ]
+
+user_views = [
+        {"usuario":1, "visualizado": [345,350,353]},
+        {"usuario":2, "visualizado": [350,351]},
+        {"usuario":3, "visualizado": [345,351,352,353]},
+        {"usuario":4, "visualizado": []}
+    ]
     
 def questao_1(users):
 
-    results = []
-    
-    for user in users:
-        redis_conn.hset("user:"+user['id'], mapping={
-            "id": user['id'],
-            "nome": user['nome'],
-            "email": user['email']
-        })
+    user_id = 3
 
-        results.append(redis_conn.hgetall("user:"+user['id']))
+    results = []
+
+    for user_view in user_views:
+        user_key = f"usuario:{user_view['usuario']}:visualizado"
+        for view in user_view['visualizado']:
+            redis_conn.rpush(user_key, view)
+
+    user_activities = redis_conn.lrange(f"usuario:{user_id}:visualizado", 0, -1)
+    posts = redis_conn.keys("post:*")
+    for post in posts:
+        post_data = redis_conn.hgetall(post)
+        post_id = post_data['id']
+        if post_id not in user_activities:
+            results.append(post_data['conteudo'])
+
+    for result in results:
+        print(result)
 
     return results
+    
 
 #print(questao_1(users))
 
@@ -66,12 +83,13 @@ def questao_2(interests):
     
     for interest in interests:
         for i in interest['interesses']:
-            redis_conn.lpush("usuario:"+str(interest['usuario']), i)
+            for key, value in i.items():
+                redis_conn.lpush("usuario:"+str(interest['usuario']), str(key)+":"+str(value))
 
         results.append(sorted(redis_conn.lrange("usuario:"+str(interest['usuario']), 0, -1)))
         
     return results
 
-print(questao_2(interests))
+print(questao_1(users))
 
 redis_conn.flushall()

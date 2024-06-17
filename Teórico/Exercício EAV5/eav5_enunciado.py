@@ -27,6 +27,7 @@ Imagine que será mantido também um lista de posts já vistos por um determinad
 '''
 
 import redis
+import json
 
 redis_conn = redis.Redis(
     host="redis-18230.c263.us-east-1-2.ec2.redns.redis-cloud.com", port=18230,
@@ -70,11 +71,23 @@ def test_questao_1():
 def questao_2(interests):
 
     results = []
-    
-    for interest in interests:
-        redis_conn.lpush("usuario:"+str(interest['usuario']), interest['interesses'])
 
-        results.append(sorted(redis_conn.hget("user:"+interest['usuario'], "interesses"), key=lambda d: d.values()))
+    for interest in interests:
+        user_key = f"usuario:{interest['usuario']}:interesses"
+        
+        redis_conn.delete(user_key)
+        
+        for i in interest['interesses']:
+            for key, value in i.items():
+                redis_conn.rpush(user_key, f"{key}:{value}")
+
+        user_interest = redis_conn.lrange(user_key, 0, -1)
+        
+        formatted_interests = [(item.split(':')[0], float(item.split(':')[1])) for item in user_interest]
+        formatted_interests = sorted(formatted_interests, key=lambda x: x[1])
+        
+        results.append(formatted_interests)
+
 
     return results
 
@@ -88,14 +101,28 @@ def test_questao_2():
         {"usuario":4, "interesses": [{"neurociências":0.865}, {"comportamento":0.844}, {"skinner":0.854}, {"laboratório":0.354}, {"pesquisa":0.428}]}
     ]
 
-    output = [[('estética', 0.519), ('cerveja', 0.622), ('engraçado', 0.732), ('pagode', 0.765), ('futebol', 0.855)], [('laboratório', 0.354), ('pesquisa', 0.428), ('comportamento', 0.844), ('skinner', 0.854), ('neurociências', 0.865)], [('servers', 0.54), ('culinária', 0.658), ('games', 0.745), ('hardware', 0.865), ('tecnologia', 0.999)], [('academia', 0.541), ('maquiagem', 0.658), ('estética', 0.765), ('luta', 0.884), ('jiujitsu', 0.921)]]
+    output = [[('estética', 0.519), ('cerveja', 0.622), ('engraçado', 0.732), ('pagode', 0.765), ('futebol', 0.855)],  [('academia', 0.541), ('maquiagem', 0.658), ('estética', 0.765), ('luta', 0.884), ('jiujitsu', 0.921)], [('servers', 0.54), ('culinária', 0.658), ('games', 0.745), ('hardware', 0.865), ('tecnologia', 0.999)], [('laboratório', 0.354), ('pesquisa', 0.428), ('comportamento', 0.844), ('skinner', 0.854), ('neurociências', 0.865)]]
 
     assert output == questao_2(interests)
 
 
 # Questão 3
 def questao_3(posts):
-    pass
+    
+    results = []
+
+    for post in posts:
+        redis_conn.hset("post:"+post['id'], mapping={
+            "id": post['id'],
+            "autor": post['autor'],
+            "data_hora": post['data_hora'],
+            "conteudo": post['conteudo'],
+            "palavras_chave": post['palavras_chave']
+        })
+
+        results.append(redis_conn.hgetall("post:"+post['id']))
+
+    return results
 
 def test_questao_3():
 
@@ -114,7 +141,27 @@ def test_questao_3():
 
 # Questão 4
 def questao_4(user_id):
-    pass
+    
+    user_interest = redis_conn.lrange(f"usuario:{user_id}:interesses", 0, -1)
+    formatted_interests = [(item.split(':')[0], float(item.split(':')[1])) for item in user_interest]
+    formatted_interests = sorted(formatted_interests, key=lambda x: x[1])
+
+    posts = redis_conn.keys("post:*")
+    results = []
+
+    for post in posts:
+        post_data = redis_conn.hgetall(post)
+        post_interests = post_data['palavras_chave'].split(", ")
+        post_score = 0
+        for interest in formatted_interests:
+            for post_interest in post_interests:
+                if interest[0] == post_interest:
+                    post_score += interest[1]
+        results.append((post_data['id'], post_data['conteudo'], post_score))
+
+    results = sorted(results, key=lambda x: (-x[2], x[0]))
+
+    return [result[1] for result in results]
 
 def test_questao_4():
 
@@ -122,7 +169,7 @@ def test_questao_4():
 
     output = [
         "No último mês pesquisadores testaram três novos medicamentos para ajudar aumentar o foco.",
-        "Aprenda uma receita rápida de onion rings supoer crocantes.",
+        "Aprenda uma receita rápida de onion rings super crocantes.",
         "Se liga nessa lista de jogadores que vão mudar de time no próximo mês!",
         "A dica de hoje envolve os novos delineadores da linha Rare Beauty",
         "Eu quando acho a chuteira que perdi na última pelada...",
@@ -134,7 +181,25 @@ def test_questao_4():
 
 # Questão 5
 def questao_5(user_views, user_id):
-    pass
+
+    results = []
+    
+    for user_view in user_views:
+        user_key = f"usuario:{user_view['usuario']}:visualizado"
+        for view in user_view['visualizado']:
+            redis_conn.rpush(user_key, view)
+
+    user_activities = redis_conn.lrange(f"usuario:{user_id}:visualizado", 0, -1)
+    posts = redis_conn.keys("post:*")
+    for post in posts:
+        post_data = redis_conn.hgetall(post)
+        post_id = post_data['id']
+        if post_id not in user_activities:
+            results.append((post_data['id'], post_data['conteudo']))
+
+    results = sorted(results, key=lambda x: x[0])
+
+    return [result[1] for result in results]
 
 def test_questao_5():
 
@@ -147,7 +212,7 @@ def test_questao_5():
     ]
 
     output = [
-        "Aprenda uma receita rápida de onion rings supoer crocantes.",
+        "Aprenda uma receita rápida de onion rings super crocantes.",
         "A dica de hoje envolve os novos delineadores da linha Rare Beauty",
         "Eu quando acho a chuteira que perdi na última pelada..."   
     ]
