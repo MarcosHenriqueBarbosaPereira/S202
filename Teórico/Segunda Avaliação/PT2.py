@@ -211,10 +211,12 @@ def questao_3(user_id):
     products = []
     
     for interest in user_interests:
-        query = f"SELECT * FROM produto WHERE categoria = '{interest}'"
+        query = f"SELECT id, nome, preco FROM produto WHERE categoria = '{interest}'"
         result = cassandra_session.execute(query)
+        # Divide the result preco for 100 to get the real value
         for row in result:
-            products.append([row[0], row[0], float(row[4]/100.0)])
+            row['preco'] = row['preco'] / 100.0
+            products.append(row)
 
     return products
 
